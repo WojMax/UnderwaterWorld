@@ -1,0 +1,6 @@
+﻿  main_7_1.cpp
+D:\Uczelnia\Grafika Komputerowa\Projekt\Underwater World\src\main_7_1.cpp(171,10): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\Uczelnia\Grafika Komputerowa\Projekt\Underwater World\src\main_7_1.cpp(172,10): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\Uczelnia\Grafika Komputerowa\Projekt\Underwater World\src\main_7_1.cpp(283,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+Camera.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
+  grk-cw7.vcxproj -> D:\Uczelnia\Grafika Komputerowa\Projekt\Underwater World\Debug\grk-cw7.exe
