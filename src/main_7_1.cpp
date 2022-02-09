@@ -231,6 +231,29 @@ void drawObjectTexture(obj::Model * model, glm::mat4 modelMatrix, GLuint texture
 
 	glUseProgram(0);
 }
+
+void drawSkybox(obj::Model* model, glm::mat4 modelMatrix, GLuint textureId)
+{
+	modelMatrix = modelMatrix;
+	GLuint program = programSkybox;
+
+	glUseProgram(program);
+	cameraMatrix = glm::mat4(glm::mat3(cameraMatrix));
+
+	glDepthFunc(GL_LEQUAL);
+	glUniform3f(glGetUniformLocation(program, "lightDir"), lightDir.x, lightDir.y, lightDir.z);
+	Core::SetActiveTexture(textureId, "skybox", program, 0);
+
+	glm::mat4 transformation = perspectiveMatrix * cameraMatrix * glm::scale(glm::vec3(200.0f));
+
+	glUniformMatrix4fv(glGetUniformLocation(program, "projectionView"), 1, GL_FALSE, (float*)&transformation);
+
+	Core::DrawModel(model);
+
+	glDepthFunc(GL_LESS);
+	glUseProgram(0);
+}
+
 void renderScene()
 {
 	// Update of camera and perspective matrices
@@ -242,7 +265,7 @@ void renderScene()
 
 	glm::mat4 shipInitialTransformation = glm::translate(glm::vec3(0, -0.4f, 0)) * glm::rotate(glm::radians(90.0f), glm::vec3(0, 1, 0)) * glm::scale(glm::vec3(0.08f));
 	glm::mat4 shipModelMatrix = glm::translate(cameraPos + cameraDir * 1.0f) * glm::mat4_cast(glm::inverse(rotation)) * shipInitialTransformation;
-	//drawObjectColor(&shipModel, shipModelMatrix, glm::vec3(0.6f));
+
 	drawObjectTexture(&shipModel, shipModelMatrix, textureShip);
 
 	drawObjectTexture(&sphereModel, glm::translate(glm::vec3(0, 0, 0)), textureAsteroid);
@@ -250,26 +273,8 @@ void renderScene()
 	{
 		drawObjectTexture(&sphereModel, glm::translate(randomPlanets[i]), textureAsteroid);
 	}*/
-	glm::mat4 cubeInitialTransformation = glm::scale(glm::vec3(100.0f));
-	glUseProgram(programSkybox);
-	cameraMatrix = glm::mat4(glm::mat3(cameraMatrix));
-	// draw skybox as last
-	glDepthFunc(GL_LEQUAL);  // change depth function so depth test passes when values are equal to depth buffer's content
-	//Core::SetActiveTexture(cubemapTexture, "skybox", programSkybox, 0);
-	glUniform1i(glGetUniformLocation(programSkybox, "skybox"), 0);
-	glm::mat4 transformation = perspectiveMatrix * cameraMatrix * cubeInitialTransformation;
-	glUniformMatrix4fv(glGetUniformLocation(programSkybox, "projectionView"), 1, GL_FALSE, (float*)&transformation);
 
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
-	//glDrawArrays(GL_TRIANGLES, 0, 36);
-	Core::DrawModel(&cubeModel);
-	glBindVertexArray(0);
-	glDepthFunc(GL_LESS); // set depth function back to default
-	//glUseProgram(0);
-
-	//drawObjectTexture(&sphereModel, glm::translate(glm::vec3(0,0,0)), textureAsteroid);
-	//drawObjectTexture(&sphereModel, glm::translate(glm::vec3(0, 0, 0)), textureAsteroid);
+	drawSkybox(&cubeModel, glm::translate(glm::vec3(0, 0, 0)), cubemapTexture);
 
 	glutSwapBuffers();
 }
