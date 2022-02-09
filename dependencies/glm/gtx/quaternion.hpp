@@ -169,7 +169,7 @@ namespace glm
 	///
 	/// @see gtx_quaternion
 	template<typename T, precision P>
-	GLM_FUNC_DECL tquat<T, P> rotation(
+	GLM_FUNC_DECL tquat<T, P> rotationCamera(
 		tvec3<T, P> const & orig, 
 		tvec3<T, P> const & dest);
 

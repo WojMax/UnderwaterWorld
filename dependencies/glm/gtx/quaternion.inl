@@ -173,7 +173,7 @@ namespace glm
 	}
 
 	template <typename T, precision P>
-	GLM_FUNC_QUALIFIER tquat<T, P> rotation(tvec3<T, P> const& orig, tvec3<T, P> const& dest)
+	GLM_FUNC_QUALIFIER tquat<T, P> rotationCamera(tvec3<T, P> const& orig, tvec3<T, P> const& dest)
 	{
 		T cosTheta = dot(orig, dest);
 		tvec3<T, P> rotationAxis;

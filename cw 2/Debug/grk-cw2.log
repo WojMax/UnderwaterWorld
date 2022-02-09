@@ -1,0 +1,6 @@
+﻿  Using triplet "x86-windows" from "C:\Users\Andrzej\Desktop\openvdb\vcpkg\installed\x86-windows\"
+  main_2_2.cpp
+  Render_Utils.cpp
+  Generating Code...
+Box.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
+  grk-cw2.vcxproj -> C:\Users\Andrzej\Desktop\grk\zipy\grk-cw\Debug\grk-cw2.exe
