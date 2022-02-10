@@ -5,6 +5,7 @@
 #include <iostream>
 #include <cmath>
 #include <vector>
+#include <stdlib.h>  
 #include <time.h>
 
 #include "Shader_Loader.h"
@@ -17,7 +18,7 @@ GLuint programColor, programTexture, programSkybox;
 
 Core::Shader_Loader shaderLoader;
 
-Core::RenderContext shipContext, sphereContext, cubeContext, terrainContext, fish1Context;
+Core::RenderContext shipContext, sphereContext, cubeContext, terrainContext, fish1Context, coralContext, seaweedContext, whaleContext;
 
 glm::vec3 cameraPos = glm::vec3(0, 0, 5);
 glm::vec3 cameraDir; // camera forward vector
@@ -30,7 +31,7 @@ glm::vec3 lightDir = glm::vec3(1.0f, -0.9f, -1.0f);
 
 glm::quat rotation = glm::quat(1, 0, 0, 0);
 
-GLuint textureAsteroid, textureShip, textureTerrain, textureFish1;
+GLuint textureAsteroid, textureShip, textureTerrain, textureFish1, textureCoral, textureSeaweed, textureWhale;
 
 float delta_x = 0;
 float delta_y = 0;
@@ -41,21 +42,151 @@ float old_z = 0;
 
 std::vector<glm::vec3> keyPointsFish1({
 	glm::vec3(200.0f, -2.0f, 1.0f),
+	glm::vec3(195.0f, 0.0f, 1.0f),
+	glm::vec3(190.0f, 0.0f, 1.0f),
+	glm::vec3(185.0f, 0.0f, 1.0f),
 	glm::vec3(180.0f, 0.0f, 1.0f),
-	glm::vec3(160.0f, 0.0f, 5.0f),
-	glm::vec3(140.0f, 1.0f, 5.0f),
-	glm::vec3(120.0f, 1.0f, 5.0f),
-	glm::vec3(100.0f, 1.2f, 7.0f),
-	glm::vec3(80.0f, 1.5f, 15.0f),
-	glm::vec3(60.0f, 1.5f, 15.0f),
-	glm::vec3(40.0f, 2.0f, 15.0f),
-	glm::vec3(20.0f, 2.0f, 15.0f),
-	glm::vec3(15.0f, 3.0f, 10.0f),
-	glm::vec3(10.0f, 3.0f, 10.0f),
-	glm::vec3(5.0f, 4.0f, 10.0f)
+	glm::vec3(175.0f, 0.0f, 1.0f),
+	glm::vec3(170.0f, 0.0f, 1.0f),
+	glm::vec3(165.0f, 0.0f, 1.0f),
+	glm::vec3(160.0f, 0.0f, 1.0f),
+	glm::vec3(155.0f, 0.0f, 1.0f),
+	glm::vec3(150.0f, 0.0f, 1.0f),
+	glm::vec3(145.0f, 0.0f, 1.0f),
+	glm::vec3(140.0f, 0.0f, 1.0f),
+	glm::vec3(135.0f, 0.0f, 1.0f),
+	glm::vec3(130.0f, 0.0f, 1.0f),
+	glm::vec3(124.0f, 0.0f, 1.0f),
+	glm::vec3(120.0f, 0.0f, 5.0f),
+	glm::vec3(115.0f, 1.0f, 5.0f),
+	glm::vec3(110.0f, 1.0f, 5.0f),
+	glm::vec3(105.0f, 1.2f, 7.0f),
+	glm::vec3(95.0f, 1.5f, 15.0f),
+	glm::vec3(85.0f, 1.5f, 15.0f),
+	glm::vec3(75.0f, 2.0f, 15.0f),
+	glm::vec3(65.0f, 2.0f, 15.0f),
+	glm::vec3(55.0f, 3.0f, 10.0f),
+	glm::vec3(45.0f, 3.0f, 9.0f),
+	glm::vec3(35.0f, 4.0f, -2.0f),
+	glm::vec3(25.0f, 3.0f, -10.0f),
+	glm::vec3(15.0f, 3.0f, -20.0f),
+	glm::vec3(5.0f, 3.0f, -30.0f),
+	glm::vec3(-5.0f, 3.0f, -40.0f),
+	glm::vec3(-15.0f, 3.0f, -50.0f),
+	glm::vec3(-16.0f, 3.0f, -60.0f),
+	glm::vec3(-18.0f, 3.0f, -70.0f),
+	glm::vec3(-16.0f, 3.0f, -80.0f),
+	glm::vec3(-10.0f, 3.0f, -90.0f),
+	glm::vec3(-12.0f, 3.0f, -100.0f),
+	glm::vec3(-13.0f, 3.0f, -110.0f),
+	glm::vec3(-12.0f, 3.0f, -120.0f)
 	});
 
 std::vector<glm::quat> keyRotationFish1;
+
+
+std::vector<glm::vec3> keyPointsFish2({
+	glm::vec3(10.0f, -2.0f, -120.0f),
+	glm::vec3(10.0f, 0.0f, -110.0f),
+	glm::vec3(10.0f, 0.0f, -100.0f),
+	glm::vec3(10.0f, 0.0f, -90.0f),
+	glm::vec3(10.0f, 0.0f, -80.0f),
+	glm::vec3(10.0f, 0.0f, -70.0f),
+	glm::vec3(10.0f, 0.0f, -60.0f),
+	glm::vec3(10.0f, 0.0f, -50.0f),
+	glm::vec3(10.0f, 0.0f, -40.0f),
+	glm::vec3(10.0f, 0.0f, -30.0f),
+	glm::vec3(10.0f, 0.0f, -20.0f),
+	glm::vec3(10.0f, 0.0f, -10.0f),
+	glm::vec3(10.0f, 0.0f, 0.0f),
+	glm::vec3(10.0f, 0.0f, 10.0f),
+	glm::vec3(10.0f, 0.0f, 20.0f),
+	glm::vec3(15.0f, 0.0f, 30.0f),
+	glm::vec3(20.0f, 0.0f, 40.0f),
+	glm::vec3(30.0f, 1.0f, 50.0f),
+	glm::vec3(20.0f, 1.0f, 60.0f),
+	glm::vec3(25.0f, 1.2f, 70.0f),
+	glm::vec3(20.0f, 1.5f, 80.0f),
+	glm::vec3(15.0f, 1.5f, 90.0f),
+	glm::vec3(15.0f, 2.0f, 100.0f),
+	glm::vec3(10.0f, 2.0f, 110.0f),
+	glm::vec3(5.0f, 3.0f, 120.0f),
+	glm::vec3(0.0f, 3.0f, 130.0f),
+	glm::vec3(-10.0f, 4.0f, 140.0f),
+	glm::vec3(-20.0f, 3.0f, 150.0f),
+	glm::vec3(-30.0f, 3.0f, 160.0f),
+	glm::vec3(-40.0f, 3.0f, 170.0f),
+	glm::vec3(-50.0f, 3.0f, 180.0f),
+	glm::vec3(-60.0f, 3.0f, 190.0f),
+	glm::vec3(-70.0f, 3.0f, 200.0f),
+	glm::vec3(-80.0f, 3.0f, 200.0f),
+	glm::vec3(-90.0f, 3.0f, 200.0f),
+	glm::vec3(-100.0f, 3.0f, 200.0f),
+	glm::vec3(-110.0f, 3.0f, 200.0f),
+	glm::vec3(-120.0f, 3.0f, 200.0f),
+	glm::vec3(-130.0f, 3.0f, 200.0f)
+	});
+
+std::vector<glm::quat> keyRotationFish2;
+
+
+std::vector<glm::vec3> keyPointsWhale({
+	glm::vec3(200.0f, 50.0f, -0.0f),
+	glm::vec3(195.0f, 50.0f, -0.0f),
+	glm::vec3(190.0f, 50.0f, -0.0f),
+	glm::vec3(185.0f, 50.0f, -0.0f),
+	glm::vec3(180.0f, 50.0f, -0.0f),
+	glm::vec3(175.0f, 50.0f, -0.0f),
+	glm::vec3(170.0f, 50.0f, -0.0f),
+	glm::vec3(165.0f, 50.0f, -0.0f),
+	glm::vec3(160.0f, 50.0f, -0.0f),
+	glm::vec3(155.0f, 50.0f, -0.0f),
+	glm::vec3(150.0f, 50.0f, -0.0f),
+	glm::vec3(145.0f, 50.0f, -0.0f),
+	glm::vec3(140.0f, 50.0f, -0.0f),
+	glm::vec3(135.0f, 50.0f, -0.0f),
+	glm::vec3(130.0f, 50.0f, -0.0f),
+	glm::vec3(125.0f, 50.0f, -0.0f),
+	glm::vec3(120.0f, 50.0f, -0.0f),
+	glm::vec3(115.0f, 50.0f, -0.0f),
+	glm::vec3(110.0f, 50.0f, -0.0f),
+	glm::vec3(105.0f, 50.0f, -0.0f),
+	glm::vec3(100.0f, 50.0f, -0.0f),
+	glm::vec3(95.0f, 50.0f, -0.0f),
+	glm::vec3(90.0f, 50.0f, -0.0f),
+	glm::vec3(85.0f, 50.0f, -0.0f),
+	glm::vec3(80.0f, 50.0f, -0.0f),
+	glm::vec3(75.0f, 50.0f, -0.0f),
+	glm::vec3(70.0f, 50.0f, -0.0f),
+	glm::vec3(65.0f, 50.0f, -0.0f),
+	glm::vec3(60.0f, 50.0f, -0.0f),
+	glm::vec3(55.0f, 50.0f, -0.0f),
+	glm::vec3(50.0f, 50.0f, -0.0f),
+	glm::vec3(45.0f, 50.0f, -0.0f),
+	glm::vec3(40.0f, 50.0f, -0.0f),
+	glm::vec3(35.0f, 50.0f, -0.0f),
+	glm::vec3(30.0f, 50.0f, -0.0f),
+	glm::vec3(25.0f, 50.0f, -0.0f),
+	glm::vec3(20.0f, 50.0f, -0.0f),
+	glm::vec3(15.0f, 50.0f, -0.0f),
+	glm::vec3(10.0f, 50.0f, -0.0f),
+	glm::vec3(5.0f, 50.0f, -0.0f),
+	glm::vec3(0.0f, 50.0f, -0.0f),
+	glm::vec3(-5.0f, 50.0f, -0.0f),
+	glm::vec3(-10.0f, 50.0f, -0.0f),
+	glm::vec3(-15.0f, 50.0f, -0.0f),
+	glm::vec3(-20.0f, 50.0f, -0.0f),
+	glm::vec3(-25.0f, 50.0f, -0.0f),
+	glm::vec3(-30.0f, 50.0f, -0.0f),
+	glm::vec3(-35.0f, 50.0f, -0.0f),
+	glm::vec3(-40.0f, 50.0f, -0.0f),
+	glm::vec3(-45.0f, 50.0f, -0.0f),
+	glm::vec3(-50.0f, 50.0f, -0.0f),
+	glm::vec3(-55.0f, 50.0f, -0.0f),
+	glm::vec3(-60.0f, 50.0f, -0.0f),
+	});
+
+std::vector<glm::quat> keyRotationWhale;
 
 
 std::vector<std::string> faces
@@ -68,6 +199,17 @@ std::vector<std::string> faces
 		"textures/skybox/back.jpg"
 };
 unsigned int cubemapTexture;
+
+//random x and z
+const int CORALS_AMOUNT = 100;
+
+float randX[CORALS_AMOUNT];
+float randZ[CORALS_AMOUNT];
+
+const int WEED_AMOUNT = 100;
+
+float SWrandX[WEED_AMOUNT];
+float SWrandZ[WEED_AMOUNT];
 
 unsigned int loadCubemap()
 {
@@ -254,21 +396,41 @@ void renderScene()
 
 	drawObjectTexture(shipContext, shipModelMatrix, textureShip);
 
-	drawObjectTexture(fish1Context, glm::translate(glm::vec3(0, 0, 0)), textureFish1);
+	//drawObjectTexture(fish1Context, glm::translate(glm::vec3(0, 0, 0)), textureFish1);
 
 	drawObjectTexture(terrainContext, glm::translate(glm::vec3(0, -8, 0)) * glm::rotate(glm::radians(90.0f), glm::vec3(-1, 0, 0)) * glm::scale(glm::vec3(1.0f)), textureTerrain);
 
 
+	for (int i = 0; i <= CORALS_AMOUNT; i++)
+	{
+			drawObjectTexture(coralContext, glm::translate(glm::vec3(randX[i], -5.2, randZ[i])) * glm::scale(glm::vec3(0.05f)) * glm::rotate(glm::radians(90.0f), glm::vec3(-1, 0, 0)), textureCoral);
+	}
+
+	for (int i = 0; i <= WEED_AMOUNT; i++)
+	{
+		drawObjectTexture(seaweedContext, glm::translate(glm::vec3(SWrandX[i], -5.2, SWrandZ[i])) * glm::rotate(glm::radians(90.0f), glm::vec3(0, -1, 0)), textureSeaweed);
+
+	}
 	glm::vec3  change1 = glm::vec3(0, 3, 0);
 	glm::vec3  change2 = glm::vec3(0, 0, 0);
 	glm::vec3  change3 = glm::vec3(3, 0, 0);
 	glm::vec3  change4 = glm::vec3(0, 2, 1);
 	for (int i = 0; i < 30; i++) {
 		if (time > -10) {
+			glm::mat4 fish1Transformation = glm::scale(glm::vec3(0.3f));
 			glm::mat4 matrix = animationMatrix(time + 15, keyPointsFish1, keyRotationFish1);
-			drawObjectTexture(fish1Context, matrix * glm::translate(change2) * glm::rotate(glm::radians(45.0f), glm::vec3(0, 0, -1)) * glm::rotate(glm::radians(90.0f), glm::vec3(0, -1, 0)), textureFish1);
-			drawObjectTexture(fish1Context, matrix * glm::translate(change3) * glm::rotate(glm::radians(45.0f), glm::vec3(0, 0, -1)) * glm::rotate(glm::radians(90.0f), glm::vec3(0, -1, 0)), textureFish1);
-			drawObjectTexture(fish1Context, matrix * glm::translate(change4) * glm::rotate(glm::radians(45.0f), glm::vec3(0, 0, -1)) * glm::rotate(glm::radians(90.0f), glm::vec3(0, -1, 0)), textureFish1);
+			drawObjectTexture(fish1Context, matrix * glm::translate(change2) * fish1Transformation, textureFish1);
+			drawObjectTexture(fish1Context, matrix * glm::translate(change3) * fish1Transformation, textureFish1);
+			drawObjectTexture(fish1Context, matrix * glm::translate(change4) * fish1Transformation, textureFish1);
+
+			glm::mat4 matrix2 = animationMatrix(time + 15, keyPointsFish2, keyRotationFish2);
+			drawObjectTexture(fish1Context, matrix2 * glm::translate(change2) * fish1Transformation, textureFish1);
+			drawObjectTexture(fish1Context, matrix2 * glm::translate(change3) * fish1Transformation, textureFish1);
+			drawObjectTexture(fish1Context, matrix2 * glm::translate(change4) * fish1Transformation, textureFish1);
+
+			glm::mat4 matrix3 = animationMatrix(time + 15, keyPointsFish2, keyRotationFish2);
+			drawObjectTexture(whaleContext, matrix2 * glm::scale(glm::vec3(5.0f)), textureWhale);
+			time -= 13;
 		}
 	}
 
@@ -306,6 +468,46 @@ void initKeyRotation(std::vector<glm::vec3>& keyPoints, std::vector<glm::quat>& 
 
 void init()
 {
+	for (int i = 0; i < CORALS_AMOUNT; i++)
+	{
+		if (rand() % 2 == 0)
+		{
+			randX[i] = rand() % 50;
+		}
+		else
+		{
+			randX[i] = -(rand() % 50);
+		}
+		if (rand() % 2 == 0)
+		{
+			randZ[i] = rand() % 50;
+		}
+		else
+		{
+			randZ[i] = -(rand() % 50);
+		}
+	}
+	//seaweed
+	for (int i = 0; i < WEED_AMOUNT; i++)
+	{
+		if (rand() % 2 == 0)
+		{
+			SWrandX[i] = rand() % 50;
+		}
+		else
+		{
+			SWrandX[i] = -(rand() % 50);
+		}
+		if (rand() % 2 == 0)
+		{
+			SWrandZ[i] = rand() % 50;
+		}
+		else
+		{
+			SWrandZ[i] = -(rand() % 50);
+		}
+	}
+
 	srand(time(0));
 	glEnable(GL_DEPTH_TEST);
 	programColor = shaderLoader.CreateProgram("shaders/shader_color.vert", "shaders/shader_color.frag");
@@ -316,14 +518,23 @@ void init()
 	loadModelToContext("models/cube.obj", cubeContext);
 	loadModelToContext("models/sphere.obj", sphereContext);
 	loadModelToContext("models/desert_terrain.obj", terrainContext);
-	loadModelToContext("models/fish/fish1.obj", fish1Context);
+	loadModelToContext("models/fish/fish2.obj", fish1Context);
+	loadModelToContext("models/coral.obj", coralContext);
+	loadModelToContext("models/seaweed.obj", seaweedContext);
+	loadModelToContext("models/fish/whale.obj", whaleContext);
 
 	textureAsteroid = Core::LoadTexture("textures/a.jpg");
 	textureShip = Core::LoadTexture("textures/submarine1.png");
 	cubemapTexture = loadCubemap();
 	textureTerrain = Core::LoadTexture("textures/diffuse.png");
-	textureFish1 = Core::LoadTexture("textures/fish/fish1.jpg");
+	textureFish1 = Core::LoadTexture("textures/fish/fish2.png");
+	textureCoral = Core::LoadTexture("textures/coral.jpg");
+	textureSeaweed = Core::LoadTexture("textures/seaweed.png");
+	textureWhale = Core::LoadTexture("textures/fish/whale.jpg");
+
 	initKeyRotation(keyPointsFish1, keyRotationFish1);
+	initKeyRotation(keyPointsFish2, keyRotationFish2);
+	initKeyRotation(keyPointsWhale, keyRotationWhale);
 }
 
 void shutdown()
