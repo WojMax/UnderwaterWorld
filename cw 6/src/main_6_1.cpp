@@ -150,7 +150,7 @@ std::vector<std::string> faces
 unsigned int cubemapTexture;
 
 //random x and z
-const int CORALS_AMOUNT = 100;
+const int CORALS_AMOUNT = 50;
 
 float randX[CORALS_AMOUNT];
 float randZ[CORALS_AMOUNT];
@@ -401,7 +401,7 @@ void renderScene()
 	drawObjectTexture(terrainContext, glm::translate(glm::vec3(0, -8, 0)) * glm::rotate(glm::radians(90.0f), glm::vec3(-1, 0, 0)) * glm::scale(glm::vec3(1.0f)), textureTerrain);
 
 
-	for (int i = 0; i <= CORALS_AMOUNT; i++)
+	for (int i = 1; i <= CORALS_AMOUNT; i++)
 	{
 			drawObjectTexture(coralContext, glm::translate(glm::vec3(randX[i], -5.2, randZ[i])) * glm::scale(glm::vec3(0.05f)) * glm::rotate(glm::radians(90.0f), glm::vec3(-1, 0, 0)), textureCoral);
 	}
