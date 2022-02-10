@@ -15,6 +15,8 @@
 #include "SOIL/stb_image_aug.h"
 #include "ParticleEmitter.h"
 
+
+
 GLuint programColor, programTexture, programSkybox, programParticle;
 
 Core::Shader_Loader shaderLoader;
@@ -24,6 +26,7 @@ Core::RenderContext shipContext, sphereContext, cubeContext, terrainContext, fis
 glm::vec3 cameraPos = glm::vec3(0, 0, 5);
 glm::vec3 cameraDir; // camera forward vector
 glm::vec3 cameraSide; // camera up vector
+glm::vec3 nextCameraPos;
 float cameraAngle = 0;
 
 glm::mat4 cameraMatrix, perspectiveMatrix;
@@ -246,11 +249,16 @@ void keyboard(unsigned char key, int x, int y)
 	{
 	case 'z': cameraAngle -= angleSpeed; break;
 	case 'x': cameraAngle += angleSpeed; break;
-	case 'w': cameraPos += cameraDir * moveSpeed; break;
-	case 's': cameraPos -= cameraDir * moveSpeed; break;
-	case 'd': cameraPos += cameraSide * moveSpeed; break;
-	case 'a': cameraPos -= cameraSide * moveSpeed; break;
+	case 'w': nextCameraPos = cameraPos + cameraDir * moveSpeed; break;
+	case 's': nextCameraPos = cameraPos - cameraDir * moveSpeed; break;
+	case 'd': nextCameraPos = cameraPos + cameraSide * moveSpeed; break;
+	case 'a': nextCameraPos = cameraPos - cameraSide * moveSpeed; break;
 	}
+	if (nextCameraPos.y >= -3 & nextCameraPos.x <= 50 & nextCameraPos.x >= -50 & nextCameraPos.z <= 50 & nextCameraPos.z >= -50)
+	{
+		cameraPos = nextCameraPos;
+	}
+
 }
 
 void mouse(int x, int y)
