@@ -19,7 +19,7 @@ GLuint programColor, programTexture, programSkybox, programParticle;
 
 Core::Shader_Loader shaderLoader;
 
-Core::RenderContext shipContext, sphereContext, cubeContext, terrainContext, fish1Context, coralContext, seaweedContext, whaleContext;
+Core::RenderContext shipContext, sphereContext, cubeContext, terrainContext, fish1Context, coralContext, seaweedContext, whaleContext,plantContext, plant2Context;
 
 glm::vec3 cameraPos = glm::vec3(0, 0, 5);
 glm::vec3 cameraDir; // camera forward vector
@@ -32,7 +32,7 @@ glm::vec3 lightDir = glm::vec3(1.0f, -0.9f, -1.0f);
 
 glm::quat rotation = glm::quat(1, 0, 0, 0);
 
-GLuint textureAsteroid, textureShip, textureTerrain, textureFish1, textureCoral, textureSeaweed, textureWhale;
+GLuint textureAsteroid, textureShip, textureTerrain, textureFish1, textureCoral, textureSeaweed, textureWhale, texturePlant, texturePlant2;
 
 float delta_x = 0;
 float delta_y = 0;
@@ -159,6 +159,16 @@ const int WEED_AMOUNT = 100;
 
 float SWrandX[WEED_AMOUNT];
 float SWrandZ[WEED_AMOUNT];
+
+const int PLANT_AMOUNT = 100;
+
+float PLrandX[PLANT_AMOUNT];
+float PLrandZ[PLANT_AMOUNT];
+
+const int PLANT2_AMOUNT = 100;
+
+float PrandX[PLANT2_AMOUNT];
+float PrandZ[PLANT2_AMOUNT];
 
 ParticleEmitter* ParticlesEmitter;
 
@@ -387,6 +397,19 @@ void renderScene()
 		drawObjectTexture(seaweedContext, glm::translate(glm::vec3(SWrandX[i], -5.2, SWrandZ[i])) * glm::rotate(glm::radians(90.0f), glm::vec3(0, -1, 0)), textureSeaweed);
 
 	}
+
+	for (int i = 0; i <= PLANT_AMOUNT; i++)
+	{
+		drawObjectTexture(plantContext, glm::translate(glm::vec3(PLrandX[i], -5.2, PLrandZ[i]))  * glm::rotate(glm::radians(90.0f), glm::vec3(0, -1, 0)), texturePlant);
+
+	}
+	
+	for (int i = 0; i <= PLANT2_AMOUNT; i++)
+	{
+		drawObjectTexture(plant2Context, glm::translate(glm::vec3(PrandX[i], -5.2, PrandZ[i])) * glm::scale(glm::vec3(0.1f)) * glm::rotate(glm::radians(90.0f), glm::vec3(0, -1, 0)), texturePlant2);
+
+	}
+
 	glm::vec3  change1 = glm::vec3(0, 3, 0);
 	glm::vec3  change2 = glm::vec3(0, 0, 0);
 	glm::vec3  change3 = glm::vec3(3, 0, 0);
@@ -490,6 +513,46 @@ void init()
 			SWrandZ[i] = -(rand() % 50);
 		}
 	}
+	//plant1
+	for (int i = 0; i < PLANT_AMOUNT; i++)
+	{
+		if (rand() % 2 == 0)
+		{
+			PLrandX[i] = rand() % 50;
+		}
+		else
+		{
+			PLrandX[i] = -(rand() % 50);
+		}
+		if (rand() % 2 == 0)
+		{
+			PLrandZ[i] = rand() % 50;
+		}
+		else
+		{
+			PLrandZ[i] = -(rand() % 50);
+		}
+	}	
+	//plant2
+	for (int i = 0; i < PLANT2_AMOUNT; i++)
+	{
+		if (rand() % 2 == 0)
+		{
+			PrandX[i] = rand() % 50;
+		}
+		else
+		{
+			PrandX[i] = -(rand() % 50);
+		}
+		if (rand() % 2 == 0)
+		{
+			PrandZ[i] = rand() % 50;
+		}
+		else
+		{
+			PrandZ[i] = -(rand() % 50);
+		}
+	}
 
 	srand(time(0));
 	glEnable(GL_DEPTH_TEST);
@@ -508,6 +571,8 @@ void init()
 	loadModelToContext("models/coral.obj", coralContext);
 	loadModelToContext("models/seaweed.obj", seaweedContext);
 	loadModelToContext("models/fish/whale.obj", whaleContext);
+	loadModelToContext("models/plant.obj", plantContext);
+	loadModelToContext("models/plant2.obj", plant2Context);
 
 	textureAsteroid = Core::LoadTexture("textures/a.jpg");
 	textureShip = Core::LoadTexture("textures/submarine1.png");
@@ -517,6 +582,8 @@ void init()
 	textureCoral = Core::LoadTexture("textures/coral.jpg");
 	textureSeaweed = Core::LoadTexture("textures/seaweed.png");
 	textureWhale = Core::LoadTexture("textures/fish/whale.jpg");
+	texturePlant = Core::LoadTexture("textures/plant.png");
+	texturePlant2 = Core::LoadTexture("textures/plant2.jpg");
 
 	for (int i = 0; i <= 140; i++)
 	{
