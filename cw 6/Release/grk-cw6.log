@@ -1,33 +1,38 @@
 ﻿  main_6_1.cpp
-C:\Users\Wojciech\Desktop\grafika\UnderwaterWorld\cw 6\src\main_6_1.cpp(305,10): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Wojciech\Desktop\grafika\UnderwaterWorld\cw 6\src\main_6_1.cpp(306,10): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Wojciech\Desktop\grafika\UnderwaterWorld\cw 6\src\main_6_1.cpp(392,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\Wojciech\Desktop\grafika\UnderwaterWorld\cw 6\src\main_6_1.cpp(394,63): warning C4244: "argument": konwersja z "glm::tvec3<float,glm::packed_highp>::length_type" do "_Ty", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(260,10): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(261,10): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(347,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(349,63): warning C4244: "argument": konwersja z "glm::tvec3<float,glm::packed_highp>::length_type" do "_Ty", możliwa utrata danych
           with
           [
               _Ty=float
           ]
-C:\Users\Wojciech\Desktop\grafika\UnderwaterWorld\cw 6\src\main_6_1.cpp(511,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\Wojciech\Desktop\grafika\UnderwaterWorld\cw 6\src\main_6_1.cpp(527,22): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Wojciech\Desktop\grafika\UnderwaterWorld\cw 6\src\main_6_1.cpp(531,15): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Wojciech\Desktop\grafika\UnderwaterWorld\cw 6\src\main_6_1.cpp(535,22): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Wojciech\Desktop\grafika\UnderwaterWorld\cw 6\src\main_6_1.cpp(539,15): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Wojciech\Desktop\grafika\UnderwaterWorld\cw 6\src\main_6_1.cpp(547,24): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Wojciech\Desktop\grafika\UnderwaterWorld\cw 6\src\main_6_1.cpp(551,17): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Wojciech\Desktop\grafika\UnderwaterWorld\cw 6\src\main_6_1.cpp(555,24): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Wojciech\Desktop\grafika\UnderwaterWorld\cw 6\src\main_6_1.cpp(559,17): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Wojciech\Desktop\grafika\UnderwaterWorld\cw 6\src\main_6_1.cpp(567,24): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Wojciech\Desktop\grafika\UnderwaterWorld\cw 6\src\main_6_1.cpp(571,17): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Wojciech\Desktop\grafika\UnderwaterWorld\cw 6\src\main_6_1.cpp(575,24): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Wojciech\Desktop\grafika\UnderwaterWorld\cw 6\src\main_6_1.cpp(579,17): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Wojciech\Desktop\grafika\UnderwaterWorld\cw 6\src\main_6_1.cpp(587,23): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Wojciech\Desktop\grafika\UnderwaterWorld\cw 6\src\main_6_1.cpp(591,16): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Wojciech\Desktop\grafika\UnderwaterWorld\cw 6\src\main_6_1.cpp(595,23): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Wojciech\Desktop\grafika\UnderwaterWorld\cw 6\src\main_6_1.cpp(599,16): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Wojciech\Desktop\grafika\UnderwaterWorld\cw 6\src\main_6_1.cpp(603,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(488,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(504,22): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(508,15): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(512,22): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(516,15): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(524,24): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(528,17): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(532,24): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(536,17): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(544,24): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(548,17): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(552,24): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(556,17): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(564,23): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(568,16): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(572,23): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(576,16): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(584,23): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(588,16): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(592,23): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(596,16): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(599,37): warning C4305: "argument": obcięcie z "double" do "float"
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(602,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
   Trwa generowanie kodu
-  1 of 993 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+  2 of 1013 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    7 functions had inline decision re-evaluated but remain unchanged
+    6 functions had inline decision re-evaluated but remain unchanged
   Zakończono generowanie kodu
-  grk-cw6.vcxproj -> C:\Users\Wojciech\Desktop\grafika\UnderwaterWorld\Release\grk-cw6.exe
+  grk-cw6.vcxproj -> D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\Release\grk-cw6.exe

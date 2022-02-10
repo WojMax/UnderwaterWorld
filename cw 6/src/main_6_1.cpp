@@ -19,7 +19,7 @@ GLuint programColor, programTexture, programSkybox, programParticle;
 
 Core::Shader_Loader shaderLoader;
 
-Core::RenderContext shipContext, sphereContext, cubeContext, terrainContext, fish1Context, coralContext, seaweedContext, whaleContext,plantContext, plant2Context;
+Core::RenderContext shipContext, sphereContext, cubeContext, terrainContext, fish1Context, coralContext, seaweedContext, whaleContext,plantContext, plant2Context, bubbleContext;
 
 glm::vec3 cameraPos = glm::vec3(0, 0, 5);
 glm::vec3 cameraDir; // camera forward vector
@@ -32,7 +32,7 @@ glm::vec3 lightDir = glm::vec3(1.0f, -0.9f, -1.0f);
 
 glm::quat rotation = glm::quat(1, 0, 0, 0);
 
-GLuint textureAsteroid, textureShip, textureTerrain, textureFish1, textureCoral, textureSeaweed, textureWhale, texturePlant, texturePlant2;
+GLuint textureAsteroid, textureShip, textureTerrain, textureFish1, textureCoral, textureSeaweed, textureWhale, texturePlant, texturePlant2, textureBubble;
 
 float delta_x = 0;
 float delta_y = 0;
@@ -169,6 +169,13 @@ const int PLANT2_AMOUNT = 100;
 
 float PrandX[PLANT2_AMOUNT];
 float PrandZ[PLANT2_AMOUNT];
+
+const int BUBBLE_AMOUNT = 300;
+
+float BrandX[BUBBLE_AMOUNT];
+float BrandZ[BUBBLE_AMOUNT];
+float BubbleY[BUBBLE_AMOUNT];
+float Bspeed[BUBBLE_AMOUNT];
 
 ParticleEmitter* ParticlesEmitter;
 
@@ -366,6 +373,11 @@ glm::mat4 animationMatrix(float time, std::vector<glm::vec3> keyPoints, std::vec
 	return result;
 }
 
+float RandomNumber(float Min, float Max)
+{
+	return ((float(rand()) / float(RAND_MAX)) * (Max - Min)) + Min;
+}
+
 void renderScene()
 {
 	float time = glutGet(GLUT_ELAPSED_TIME) / 1000.f;
@@ -383,6 +395,8 @@ void renderScene()
 	drawObjectTexture(shipContext, shipModelMatrix, textureShip);
 
 	//drawObjectTexture(whaleContext, glm::translate(glm::vec3(0, 0, 0)) * glm::scale(glm::vec3(20.0f)), textureWhale);
+
+	drawObjectTexture(sphereContext, glm::translate(glm::vec3(0, 10, 0)) * glm::scale(glm::vec3(0.05f)), textureBubble);
 
 	drawObjectTexture(terrainContext, glm::translate(glm::vec3(0, -8, 0)) * glm::rotate(glm::radians(90.0f), glm::vec3(-1, 0, 0)) * glm::scale(glm::vec3(1.0f)), textureTerrain);
 
@@ -408,6 +422,15 @@ void renderScene()
 	{
 		drawObjectTexture(plant2Context, glm::translate(glm::vec3(PrandX[i], -5.2, PrandZ[i])) * glm::scale(glm::vec3(0.1f)) * glm::rotate(glm::radians(90.0f), glm::vec3(0, -1, 0)), texturePlant2);
 
+	}
+
+	for (int i = 0; i <= BUBBLE_AMOUNT; i++)
+	{
+		if (BubbleY[i] >= 20.0)
+		{
+			BubbleY[i] = RandomNumber(-7, -5);
+		}
+		drawObjectTexture(sphereContext, glm::translate(glm::vec3(BrandX[i], BubbleY[i] += Bspeed[i], BrandZ[i])) * glm::scale(glm::vec3(0.05f)), textureBubble);
 	}
 
 	glm::vec3  change1 = glm::vec3(0, 3, 0);
@@ -553,6 +576,28 @@ void init()
 			PrandZ[i] = -(rand() % 50);
 		}
 	}
+	//Bubbles
+	for (int i = 0; i < BUBBLE_AMOUNT; i++)
+	{
+		if (rand() % 2 == 0)
+		{
+			BrandX[i] = rand() % 50;
+		}
+		else
+		{
+			BrandX[i] = -(rand() % 50);
+		}
+		if (rand() % 2 == 0)
+		{
+			BrandZ[i] = rand() % 50;
+		}
+		else
+		{
+			BrandZ[i] = -(rand() % 50);
+		}
+		BubbleY[i] = RandomNumber(-7, -5);
+		Bspeed[i] = RandomNumber(0.05, 0.1);
+	}
 
 	srand(time(0));
 	glEnable(GL_DEPTH_TEST);
@@ -573,6 +618,7 @@ void init()
 	loadModelToContext("models/fish/whale.obj", whaleContext);
 	loadModelToContext("models/plant.obj", plantContext);
 	loadModelToContext("models/plant2.obj", plant2Context);
+	loadModelToContext("models/bubble.obj", bubbleContext);
 
 	textureAsteroid = Core::LoadTexture("textures/a.jpg");
 	textureShip = Core::LoadTexture("textures/submarine1.png");
@@ -584,6 +630,7 @@ void init()
 	textureWhale = Core::LoadTexture("textures/fish/whale.jpg");
 	texturePlant = Core::LoadTexture("textures/plant.png");
 	texturePlant2 = Core::LoadTexture("textures/plant2.jpg");
+	textureBubble = Core::LoadTexture("textures/bubble.png");
 
 	for (int i = 0; i <= 140; i++)
 	{
