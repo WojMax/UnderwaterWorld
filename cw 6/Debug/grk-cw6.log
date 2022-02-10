@@ -1,1 +1,14 @@
-﻿  grk-cw6.vcxproj -> D:\Uczelnia\Grafika Projekt\grk-cw\grk-cw\Debug\grk-cw6.exe
+﻿  Render_Utils.cpp
+  main_6_1.cpp
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(122,10): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(123,10): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(209,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(211,63): warning C4244: "argument": konwersja z "glm::tvec3<float,glm::packed_highp>::length_type" do "_Ty", możliwa utrata danych
+          with
+          [
+              _Ty=float
+          ]
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(295,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+  Generowanie kodu...
+Camera.obj : warning LNK4075: zignorowano opcję „/EDITANDCONTINUE” z powodu określenia opcji „/INCREMENTAL:NO”
+  grk-cw6.vcxproj -> D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\Debug\grk-cw6.exe

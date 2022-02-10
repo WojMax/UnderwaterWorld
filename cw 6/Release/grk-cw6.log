@@ -1,0 +1,17 @@
+﻿  main_6_1.cpp
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(125,10): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(126,10): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(212,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(214,63): warning C4244: "argument": konwersja z "glm::tvec3<float,glm::packed_highp>::length_type" do "_Ty", możliwa utrata danych
+          with
+          [
+              _Ty=float
+          ]
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(297,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(309,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+  Trwa generowanie kodu
+  1 of 924 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    6 functions had inline decision re-evaluated but remain unchanged
+  Zakończono generowanie kodu
+  grk-cw6.vcxproj -> D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\Release\grk-cw6.exe

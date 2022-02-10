@@ -5,6 +5,7 @@
 #include <iostream>
 #include <cmath>
 #include <vector>
+#include <time.h>
 
 #include "Shader_Loader.h"
 #include "Render_Utils.h"
@@ -16,7 +17,7 @@ GLuint programColor, programTexture, programSkybox;
 
 Core::Shader_Loader shaderLoader;
 
-Core::RenderContext shipContext, sphereContext, cubeContext, terrainContext;
+Core::RenderContext shipContext, sphereContext, cubeContext, terrainContext, fish1Context;
 
 glm::vec3 cameraPos = glm::vec3(0, 0, 5);
 glm::vec3 cameraDir; // camera forward vector
@@ -29,7 +30,7 @@ glm::vec3 lightDir = glm::vec3(1.0f, -0.9f, -1.0f);
 
 glm::quat rotation = glm::quat(1, 0, 0, 0);
 
-GLuint textureAsteroid, textureShip, textureTerrain;
+GLuint textureAsteroid, textureShip, textureTerrain, textureFish1;
 
 float delta_x = 0;
 float delta_y = 0;
@@ -37,6 +38,24 @@ float delta_z = 0;
 float old_x = 0;
 float old_y = 0;
 float old_z = 0;
+
+std::vector<glm::vec3> keyPointsFish1({
+	glm::vec3(200.0f, -2.0f, 1.0f),
+	glm::vec3(180.0f, 0.0f, 1.0f),
+	glm::vec3(160.0f, 0.0f, 5.0f),
+	glm::vec3(140.0f, 1.0f, 5.0f),
+	glm::vec3(120.0f, 1.0f, 5.0f),
+	glm::vec3(100.0f, 1.2f, 7.0f),
+	glm::vec3(80.0f, 1.5f, 15.0f),
+	glm::vec3(60.0f, 1.5f, 15.0f),
+	glm::vec3(40.0f, 2.0f, 15.0f),
+	glm::vec3(20.0f, 2.0f, 15.0f),
+	glm::vec3(15.0f, 3.0f, 10.0f),
+	glm::vec3(10.0f, 3.0f, 10.0f),
+	glm::vec3(5.0f, 4.0f, 10.0f)
+	});
+
+std::vector<glm::quat> keyRotationFish1;
 
 
 std::vector<std::string> faces
@@ -185,8 +204,43 @@ void drawSkybox(Core::RenderContext context, glm::mat4 modelMatrix, GLuint textu
 	glUseProgram(0);
 }
 
+glm::mat4 animationMatrix(float time, std::vector<glm::vec3> keyPoints, std::vector<glm::quat> keyRotation) {
+	float speed = 2.;
+	time = time * speed;
+	std::vector<float> distances;
+	float timeStep = 0;
+	for (int i = 0; i < keyPoints.size() - 1; i++) {
+		timeStep += (keyPoints[i] - keyPoints[i + 1]).length();
+		distances.push_back((keyPoints[i] - keyPoints[i + 1]).length());
+	}
+	time = fmod(time, timeStep);
+
+	int index = 0;
+
+	while (distances[index] <= time) {
+		time = time - distances[index];
+		index += 1;
+	}
+
+	float t = time / distances[index];
+
+	int size = keyPoints.size() - 1;
+	int rotationSize = keyRotation.size() - 1;
+
+	glm::vec3 pos = glm::catmullRom(keyPoints[index - 1], keyPoints[index], keyPoints[index + 1], keyPoints[index + 2], t);
+
+	auto a1 = keyRotation[index] * glm::exp(-(glm::log(glm::inverse(keyRotation[index]) * keyRotation[index - 1]) + glm::log(glm::inverse(keyRotation[index]) * keyRotation[index + 1])) * glm::quat(1 / 4, 1 / 4, 1 / 4, 1 / 4));
+	auto a2 = keyRotation[index + 1] * glm::exp(-(glm::log(glm::inverse(keyRotation[index + 1]) * keyRotation[index]) + glm::log(glm::inverse(keyRotation[index + 1]) * keyRotation[index + 2])) * glm::quat(1 / 4, 1 / 4, 1 / 4, 1 / 4));
+	auto animationRotation = glm::squad(keyRotation[index], keyRotation[index + 1], a1, a2, t);
+
+	glm::mat4 result = glm::translate(pos) * glm::mat4_cast(animationRotation);
+
+	return result;
+}
+
 void renderScene()
 {
+	float time = glutGet(GLUT_ELAPSED_TIME) / 1000.f;
 	// Aktualizacja macierzy widoku i rzutowania
 	cameraMatrix = createCameraMatrix();
 	perspectiveMatrix = Core::createPerspectiveMatrix();
@@ -194,15 +248,30 @@ void renderScene()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(0.0f, 0.1f, 0.3f, 1.0f);
 
-	glm::mat4 shipInitialTransformation = glm::translate(glm::vec3(0, -0.4f, 0)) * glm::rotate(glm::radians(90.0f), glm::vec3(0, 1, 0)) * glm::scale(glm::vec3(0.08f));
+	glm::mat4 shipInitialTransformation = glm::translate(glm::vec3(-0.1f, -0.4f, 0)) * glm::rotate(glm::radians(90.0f), glm::vec3(0, 1, 0)) * glm::scale(glm::vec3(0.1f));
 	glm::mat4 shipModelMatrix = glm::translate(cameraPos + cameraDir * 1.0f) * glm::mat4_cast(glm::inverse(rotation)) * shipInitialTransformation;
 
 
 	drawObjectTexture(shipContext, shipModelMatrix, textureShip);
 
-	drawObjectTexture(sphereContext, glm::translate(glm::vec3(0, 0, 0)), textureAsteroid);
+	drawObjectTexture(fish1Context, glm::translate(glm::vec3(0, 0, 0)), textureFish1);
 
 	drawObjectTexture(terrainContext, glm::translate(glm::vec3(0, -8, 0)) * glm::rotate(glm::radians(90.0f), glm::vec3(-1, 0, 0)) * glm::scale(glm::vec3(1.0f)), textureTerrain);
+
+
+	glm::vec3  change1 = glm::vec3(0, 3, 0);
+	glm::vec3  change2 = glm::vec3(0, 0, 0);
+	glm::vec3  change3 = glm::vec3(3, 0, 0);
+	glm::vec3  change4 = glm::vec3(0, 2, 1);
+	for (int i = 0; i < 30; i++) {
+		if (time > -10) {
+			glm::mat4 matrix = animationMatrix(time + 15, keyPointsFish1, keyRotationFish1);
+			drawObjectTexture(fish1Context, matrix * glm::translate(change2) * glm::rotate(glm::radians(45.0f), glm::vec3(0, 0, -1)) * glm::rotate(glm::radians(90.0f), glm::vec3(0, -1, 0)), textureFish1);
+			drawObjectTexture(fish1Context, matrix * glm::translate(change3) * glm::rotate(glm::radians(45.0f), glm::vec3(0, 0, -1)) * glm::rotate(glm::radians(90.0f), glm::vec3(0, -1, 0)), textureFish1);
+			drawObjectTexture(fish1Context, matrix * glm::translate(change4) * glm::rotate(glm::radians(45.0f), glm::vec3(0, 0, -1)) * glm::rotate(glm::radians(90.0f), glm::vec3(0, -1, 0)), textureFish1);
+		}
+	}
+
 
 	drawSkybox(cubeContext, glm::translate(glm::vec3(0, 0, 0)), cubemapTexture);
 
@@ -222,6 +291,19 @@ void loadModelToContext(std::string path, Core::RenderContext& context)
 	context.initFromAssimpMesh(scene->mMeshes[0]);
 }
 
+void initKeyRotation(std::vector<glm::vec3>& keyPoints, std::vector<glm::quat>& keyRotation) {
+	glm::vec3 oldDirection = glm::vec3(0, 0, 1);
+	glm::quat oldRotationCamera = glm::quat(1, 0, 0, 0);
+	for (int i = 0; i < keyPoints.size() - 1; i++) {
+		glm::vec3 newDirection = glm::normalize(keyPoints[i + 1] - keyPoints[i]);
+		glm::quat rotation = glm::normalize(glm::rotationCamera(oldDirection, newDirection) * oldRotationCamera);
+		keyRotation.push_back(rotation);
+		oldDirection = newDirection;
+		oldRotationCamera = rotation;
+	}
+	keyRotation.push_back(glm::quat(1, 0, 0, 0));
+}
+
 void init()
 {
 	srand(time(0));
@@ -230,15 +312,18 @@ void init()
 	programTexture = shaderLoader.CreateProgram("shaders/shader_tex.vert", "shaders/shader_tex.frag");
 	programSkybox = shaderLoader.CreateProgram("shaders/shader_skybox.vert", "shaders/shader_skybox.frag");
 
-	loadModelToContext("models/submarine_low.obj", shipContext);
+	loadModelToContext("models/submarine.obj", shipContext);
 	loadModelToContext("models/cube.obj", cubeContext);
 	loadModelToContext("models/sphere.obj", sphereContext);
 	loadModelToContext("models/desert_terrain.obj", terrainContext);
+	loadModelToContext("models/fish/fish1.obj", fish1Context);
 
 	textureAsteroid = Core::LoadTexture("textures/a.jpg");
-	textureShip = Core::LoadTexture("textures/submarine.png");
+	textureShip = Core::LoadTexture("textures/submarine1.png");
 	cubemapTexture = loadCubemap();
 	textureTerrain = Core::LoadTexture("textures/diffuse.png");
+	textureFish1 = Core::LoadTexture("textures/fish/fish1.jpg");
+	initKeyRotation(keyPointsFish1, keyRotationFish1);
 }
 
 void shutdown()

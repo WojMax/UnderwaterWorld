@@ -21,7 +21,7 @@ float logisticDepth(float depth)
     // these 2 values were default function 
     // parameters before & didn't always work
     float steepness = 1.0f;
-    float offset = 10.0f;
+    float offset = 100.0f; //10.0f
 
     float zVal = linearizeDepth(depth);
     return (1 / (1 + exp(-steepness * (zVal - offset))));

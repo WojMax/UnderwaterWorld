@@ -1,6 +1,8 @@
-﻿  Using triplet "x86-windows" from "C:\Users\Andrzej\Desktop\openvdb\vcpkg\installed\x86-windows\"
-  main_2_2.cpp
+﻿  Box.cpp
+  Camera.cpp
+  main_2_1a.cpp
   Render_Utils.cpp
-  Generating Code...
-Box.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
-  grk-cw2.vcxproj -> C:\Users\Andrzej\Desktop\grk\zipy\grk-cw\Debug\grk-cw2.exe
+  Shader_Loader.cpp
+  Generowanie kodu...
+Box.obj : warning LNK4075: zignorowano opcję „/EDITANDCONTINUE” z powodu określenia opcji „/INCREMENTAL:NO”
+  grk-cw2.vcxproj -> D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\Debug\grk-cw2.exe
