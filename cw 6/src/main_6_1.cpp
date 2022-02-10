@@ -130,63 +130,11 @@ std::vector<glm::vec3> keyPointsFish2({
 
 std::vector<glm::quat> keyRotationFish2;
 
+float whaleX = 200;
+float whaleY = 40;
+float whaleZ = 0;
 
-std::vector<glm::vec3> keyPointsWhale({
-	glm::vec3(200.0f, 50.0f, -0.0f),
-	glm::vec3(195.0f, 50.0f, -0.0f),
-	glm::vec3(190.0f, 50.0f, -0.0f),
-	glm::vec3(185.0f, 50.0f, -0.0f),
-	glm::vec3(180.0f, 50.0f, -0.0f),
-	glm::vec3(175.0f, 50.0f, -0.0f),
-	glm::vec3(170.0f, 50.0f, -0.0f),
-	glm::vec3(165.0f, 50.0f, -0.0f),
-	glm::vec3(160.0f, 50.0f, -0.0f),
-	glm::vec3(155.0f, 50.0f, -0.0f),
-	glm::vec3(150.0f, 50.0f, -0.0f),
-	glm::vec3(145.0f, 50.0f, -0.0f),
-	glm::vec3(140.0f, 50.0f, -0.0f),
-	glm::vec3(135.0f, 50.0f, -0.0f),
-	glm::vec3(130.0f, 50.0f, -0.0f),
-	glm::vec3(125.0f, 50.0f, -0.0f),
-	glm::vec3(120.0f, 50.0f, -0.0f),
-	glm::vec3(115.0f, 50.0f, -0.0f),
-	glm::vec3(110.0f, 50.0f, -0.0f),
-	glm::vec3(105.0f, 50.0f, -0.0f),
-	glm::vec3(100.0f, 50.0f, -0.0f),
-	glm::vec3(95.0f, 50.0f, -0.0f),
-	glm::vec3(90.0f, 50.0f, -0.0f),
-	glm::vec3(85.0f, 50.0f, -0.0f),
-	glm::vec3(80.0f, 50.0f, -0.0f),
-	glm::vec3(75.0f, 50.0f, -0.0f),
-	glm::vec3(70.0f, 50.0f, -0.0f),
-	glm::vec3(65.0f, 50.0f, -0.0f),
-	glm::vec3(60.0f, 50.0f, -0.0f),
-	glm::vec3(55.0f, 50.0f, -0.0f),
-	glm::vec3(50.0f, 50.0f, -0.0f),
-	glm::vec3(45.0f, 50.0f, -0.0f),
-	glm::vec3(40.0f, 50.0f, -0.0f),
-	glm::vec3(35.0f, 50.0f, -0.0f),
-	glm::vec3(30.0f, 50.0f, -0.0f),
-	glm::vec3(25.0f, 50.0f, -0.0f),
-	glm::vec3(20.0f, 50.0f, -0.0f),
-	glm::vec3(15.0f, 50.0f, -0.0f),
-	glm::vec3(10.0f, 50.0f, -0.0f),
-	glm::vec3(5.0f, 50.0f, -0.0f),
-	glm::vec3(0.0f, 50.0f, -0.0f),
-	glm::vec3(-5.0f, 50.0f, -0.0f),
-	glm::vec3(-10.0f, 50.0f, -0.0f),
-	glm::vec3(-15.0f, 50.0f, -0.0f),
-	glm::vec3(-20.0f, 50.0f, -0.0f),
-	glm::vec3(-25.0f, 50.0f, -0.0f),
-	glm::vec3(-30.0f, 50.0f, -0.0f),
-	glm::vec3(-35.0f, 50.0f, -0.0f),
-	glm::vec3(-40.0f, 50.0f, -0.0f),
-	glm::vec3(-45.0f, 50.0f, -0.0f),
-	glm::vec3(-50.0f, 50.0f, -0.0f),
-	glm::vec3(-55.0f, 50.0f, -0.0f),
-	glm::vec3(-60.0f, 50.0f, -0.0f),
-	});
-
+std::vector<glm::vec3> keyPointsWhale;
 std::vector<glm::quat> keyRotationWhale;
 
 
@@ -424,7 +372,7 @@ void renderScene()
 
 	drawObjectTexture(shipContext, shipModelMatrix, textureShip);
 
-	//drawObjectTexture(fish1Context, glm::translate(glm::vec3(0, 0, 0)), textureFish1);
+	//drawObjectTexture(whaleContext, glm::translate(glm::vec3(0, 0, 0)) * glm::scale(glm::vec3(20.0f)), textureWhale);
 
 	drawObjectTexture(terrainContext, glm::translate(glm::vec3(0, -8, 0)) * glm::rotate(glm::radians(90.0f), glm::vec3(-1, 0, 0)) * glm::scale(glm::vec3(1.0f)), textureTerrain);
 
@@ -443,6 +391,7 @@ void renderScene()
 	glm::vec3  change2 = glm::vec3(0, 0, 0);
 	glm::vec3  change3 = glm::vec3(3, 0, 0);
 	glm::vec3  change4 = glm::vec3(0, 2, 1);
+	float time2 = time;
 	for (int i = 0; i < 30; i++) {
 		if (time > -10) {
 			glm::mat4 fish1Transformation = glm::scale(glm::vec3(0.3f));
@@ -456,13 +405,18 @@ void renderScene()
 			drawObjectTexture(fish1Context, matrix2 * glm::translate(change3) * fish1Transformation, textureFish1);
 			drawObjectTexture(fish1Context, matrix2 * glm::translate(change4) * fish1Transformation, textureFish1);
 
-			glm::mat4 matrix3 = animationMatrix(time + 15, keyPointsFish2, keyRotationFish2);
-			drawObjectTexture(whaleContext, matrix2 * glm::scale(glm::vec3(5.0f)), textureWhale);
-			time -= 13;
+			time -= 3;
+		}
+
+		if (time2 > -10)
+		{
+			glm::mat4 matrix3 = animationMatrix(time2 + 15, keyPointsWhale, keyRotationWhale);
+			drawObjectTexture(whaleContext, matrix3 * glm::scale(glm::vec3(150.0f)), textureWhale);
 		}
 	}
 
-	drawParticle(shipModelMatrix * glm::translate(glm::vec3(-2.0f, -3.2f, 0.8f)));
+
+	drawParticle(shipModelMatrix * glm::translate(glm::vec3(-2.0f, -3.2f, 0.8f)) * glm::rotate(glm::radians(-90.0f), glm::vec3(0, -1, 0)) );
 
 	drawSkybox(cubeContext, glm::translate(glm::vec3(0, 0, 0)), cubemapTexture);
 
@@ -563,6 +517,13 @@ void init()
 	textureCoral = Core::LoadTexture("textures/coral.jpg");
 	textureSeaweed = Core::LoadTexture("textures/seaweed.png");
 	textureWhale = Core::LoadTexture("textures/fish/whale.jpg");
+
+	for (int i = 0; i <= 140; i++)
+	{
+		whaleX -= 5;
+		keyPointsWhale.push_back(glm::vec3(whaleX, whaleY, whaleZ));
+	}
+
 
 	initKeyRotation(keyPointsFish1, keyRotationFish1);
 	initKeyRotation(keyPointsFish2, keyRotationFish2);
