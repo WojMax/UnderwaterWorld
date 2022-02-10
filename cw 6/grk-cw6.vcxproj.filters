@@ -48,6 +48,9 @@
     <ClCompile Include="src\main_6_1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\ParticleEmitter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\objload.h">
@@ -83,6 +86,9 @@
     <ClInclude Include="src\Texture.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\ParticleEmitter.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\shader_color.frag">
@@ -101,6 +107,12 @@
       <Filter>Shader Files</Filter>
     </None>
     <None Include="shaders\shader_skybox.vert">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="shaders\shader_particle.frag">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="shaders\shader_particle.vert">
       <Filter>Shader Files</Filter>
     </None>
   </ItemGroup>

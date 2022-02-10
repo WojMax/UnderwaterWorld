@@ -13,8 +13,9 @@
 #include "Camera.h"
 #include "Texture.h"
 #include "SOIL/stb_image_aug.h"
+#include "ParticleEmitter.h"
 
-GLuint programColor, programTexture, programSkybox;
+GLuint programColor, programTexture, programSkybox, programParticle;
 
 Core::Shader_Loader shaderLoader;
 
@@ -210,6 +211,33 @@ const int WEED_AMOUNT = 100;
 
 float SWrandX[WEED_AMOUNT];
 float SWrandZ[WEED_AMOUNT];
+
+ParticleEmitter* ParticlesEmitter;
+
+void setUpUniformsParticles(glm::mat4 transformation)
+{
+	GLuint program = programParticle;
+
+	glUniformMatrix4fv(glGetUniformLocation(program, "M_v"), 1, GL_FALSE, (float*)&cameraMatrix);
+	glUniformMatrix4fv(glGetUniformLocation(program, "M_p"), 1, GL_FALSE, (float*)&perspectiveMatrix);
+	glUniformMatrix4fv(glGetUniformLocation(program, "transformation"), 1, GL_FALSE, (float*)&transformation);
+	glUniform1f(glGetUniformLocation(program, "particleSize"), 0.0075f);
+}
+
+void drawParticle(glm::mat4 transformation)
+{
+	GLuint program = programParticle;
+
+	glUseProgram(program);
+
+	setUpUniformsParticles(transformation);
+
+	ParticlesEmitter->update(0.05f);
+	ParticlesEmitter->draw();
+
+
+	glUseProgram(0);
+}
 
 unsigned int loadCubemap()
 {
@@ -434,6 +462,7 @@ void renderScene()
 		}
 	}
 
+	drawParticle(shipModelMatrix * glm::translate(glm::vec3(-2.0f, -3.2f, 0.8f)));
 
 	drawSkybox(cubeContext, glm::translate(glm::vec3(0, 0, 0)), cubemapTexture);
 
@@ -510,9 +539,12 @@ void init()
 
 	srand(time(0));
 	glEnable(GL_DEPTH_TEST);
+	ParticlesEmitter = new ParticleEmitter();
+
 	programColor = shaderLoader.CreateProgram("shaders/shader_color.vert", "shaders/shader_color.frag");
 	programTexture = shaderLoader.CreateProgram("shaders/shader_tex.vert", "shaders/shader_tex.frag");
 	programSkybox = shaderLoader.CreateProgram("shaders/shader_skybox.vert", "shaders/shader_skybox.frag");
+	programParticle = shaderLoader.CreateProgram("shaders/shader_particle.vert", "shaders/shader_particle.frag");
 
 	loadModelToContext("models/submarine.obj", shipContext);
 	loadModelToContext("models/cube.obj", cubeContext);
@@ -541,6 +573,8 @@ void shutdown()
 {
 	shaderLoader.DeleteProgram(programColor);
 	shaderLoader.DeleteProgram(programTexture);
+	shaderLoader.DeleteProgram(programParticle);
+	if (NULL != ParticlesEmitter) delete ParticlesEmitter;
 }
 
 void idle()
