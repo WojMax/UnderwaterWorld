@@ -1,37 +1,39 @@
 ﻿  main_6_1.cpp
-D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(260,10): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(261,10): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(347,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(349,63): warning C4244: "argument": konwersja z "glm::tvec3<float,glm::packed_highp>::length_type" do "_Ty", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(257,5): warning C4554: „&”: Sprawdź pierwszeństwo operatorów w poszukiwaniu możliwego błędu; użyj nawiasów, aby ujednoznacznić pierwszeństwo
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(257,125): warning C4554: „&”: Sprawdź pierwszeństwo operatorów w poszukiwaniu możliwego błędu; użyj nawiasów, aby ujednoznacznić pierwszeństwo
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(268,10): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(269,10): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(355,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(357,63): warning C4244: "argument": konwersja z "glm::tvec3<float,glm::packed_highp>::length_type" do "_Ty", możliwa utrata danych
           with
           [
               _Ty=float
           ]
-D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(488,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(504,22): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(508,15): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(496,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
 D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(512,22): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
 D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(516,15): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(524,24): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(528,17): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(520,22): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(524,15): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
 D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(532,24): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
 D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(536,17): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(544,24): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(548,17): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(540,24): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(544,17): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
 D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(552,24): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
 D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(556,17): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(564,23): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(568,16): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(560,24): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(564,17): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
 D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(572,23): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
 D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(576,16): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(584,23): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(588,16): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(580,23): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(584,16): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
 D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(592,23): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
 D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(596,16): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(599,37): warning C4305: "argument": obcięcie z "double" do "float"
-D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(602,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(600,23): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(604,16): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(607,37): warning C4305: "argument": obcięcie z "double" do "float"
+D:\Uczelnia\Grafika Komputerowa\UnderwaterWorldFianl\cw 6\src\main_6_1.cpp(610,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
   Trwa generowanie kodu
-  2 of 1013 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+  38 of 1013 functions ( 3.8%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     6 functions had inline decision re-evaluated but remain unchanged
   Zakończono generowanie kodu

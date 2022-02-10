@@ -143,12 +143,12 @@ std::vector<glm::quat> keyRotationWhale;
 
 std::vector<std::string> faces
 {
-		"textures/skybox/right.jpg",
-		"textures/skybox/left.jpg",
-		"textures/skybox/top.jpg",
-		"textures/skybox/bottom.jpg",
-		"textures/skybox/front.jpg",
-		"textures/skybox/back.jpg"
+		"textures/skybox/right.png",
+		"textures/skybox/left.png",
+		"textures/skybox/top.png",
+		"textures/skybox/bottom.png",
+		"textures/skybox/front.png",
+		"textures/skybox/back.png"
 };
 unsigned int cubemapTexture;
 
